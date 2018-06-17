@@ -1,0 +1,23 @@
+{
+  "name": "javame/ulov-domov",
+  "description": "UlovDomov test ticket",
+  "minimum-stability": "dev",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Jan Vacula",
+      "email": "vacula.jan@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Javame\\UlovDomov\\": "src/"
+    }
+  },
+  "require": {
+    "php": "~7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.4"
+  }
+}
