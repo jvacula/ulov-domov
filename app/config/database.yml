@@ -1,0 +1,6 @@
+connection:
+    dbname: ulov_domov
+    user: ulov_domov
+    password: welcome
+    host: localhost
+    driver: pdo_mysql

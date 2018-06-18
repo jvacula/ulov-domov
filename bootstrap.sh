@@ -1,6 +1,8 @@
 #!/bin/bash
 
 PASSWORD='welcome'
+DBNAME='ulov_domov'
+
 sudo apt-get -y update
 
 sudo apt-get -y install php php-cli php-curl php-mysql php-xdebug php-dom php-mbstring zip
@@ -11,6 +13,14 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $PASSWORD"
 
 sudo apt-get -y install mysql-server
+sudo mysqladmin create ${DBNAME} --user=root --password=${PASSWORD} --host=127.0.0.1
+
+mysql -u root -p${PASSWORD} -e "\
+        GRANT ALL PRIVILEGES ON ${DBNAME}.* TO '${DBNAME}'@'%' \
+		IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; \
+		FLUSH PRIVILEGES;"
+
+mysql -u${DBNAME} -p${PASSWORD} ${DBNAME} < ../doc/db/ulov_domov.sql
 
 sudo apt-get -y install git
 
