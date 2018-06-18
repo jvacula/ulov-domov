@@ -1,4 +1,4 @@
-# UlovDomov - test ukol
+## UlovDomov - test ukol
 
 ## Pokyny
 - Výsledný kód umístit na public github repositář a poslat Johnymu odkaz v emailu.
