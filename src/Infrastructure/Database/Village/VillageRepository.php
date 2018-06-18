@@ -37,18 +37,25 @@ class VillageRepository implements VillageRepositoryInterface
 
     /**
      * @return VillageCollection
+     * @throws FailedToExecuteQueryException
      */
     public function findAll()
     {
         try {
-            $statement = $this->connection->prepare(
+            return $this->collectionFactory->build(
+                $this->connection->fetchAll(
                 "SELECT * FROM " . self::TABLE_NAME
+            )
             );
-            $statement->execute();
-
-            return $this->collectionFactory->build($statement);
         } catch (DBALException $e) {
-            throw new FailedToExecuteQueryException();
+            throw new FailedToExecuteQueryException(
+                sprintf(
+                    'Failed to execute query. Class: %s, error: %s (%s)',
+                    __CLASS__,
+                    $e->getMessage(),
+                    $e->getCode()
+                )
+            );
         }
     }
 }

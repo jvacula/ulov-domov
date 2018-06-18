@@ -2,13 +2,11 @@
 
 namespace Javame\UlovDomov\Village;
 
-use Doctrine\DBAL\Statement;
-
 interface VillageCollectionFactoryInterface
 {
     /**
-     * @param Statement $villages
+     * @param array $villages
      * @return VillageCollection
      */
-    public function build(Statement $villages);
+    public function build(array $villages);
 }

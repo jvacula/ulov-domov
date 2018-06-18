@@ -24,13 +24,9 @@ class VillageCollectionFactoryTest extends TestCase
      **/
     public function build_emptyResultSet_returnsEmptyCollection()
     {
-        $this->statement->getIterator()->willReturn(
-            new \ArrayIterator()
-        );
-
         $factory = new VillageCollectionFactory();
 
-        $this->assertCount(0, $factory->build($this->statement->reveal()));
+        $this->assertCount(0, $factory->build([]));
     }
 
     /**
@@ -38,20 +34,15 @@ class VillageCollectionFactoryTest extends TestCase
      **/
     public function build_villageResult_returnsCollection()
     {
-        $this->statement->getIterator()->willReturn(
-            new \ArrayIterator(
-
-                [
-                    [
-                        'id' => 0,
-                        'name' => 'fooBar',
-                    ],
-                ]
-            )
-        );
+        $result = [
+            [
+                'id' => 0,
+                'name' => 'fooBar',
+            ],
+        ];
 
         $factory = new VillageCollectionFactory();
 
-        $this->assertCount(1, $factory->build($this->statement->reveal()));
+        $this->assertCount(1, $factory->build($result));
     }
 }

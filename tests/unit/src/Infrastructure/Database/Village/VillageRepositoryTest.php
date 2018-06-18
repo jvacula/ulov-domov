@@ -33,13 +33,10 @@ class VillageRepositoryTest extends TestCase
      */
     public function findAll_correctlyExecuted_returnsCollection()
     {
-        /** @var Statement|ObjectProphecy $statement */
-        $statement = $this->prophesize(Statement::class);
-        $this->connection->prepare(Argument::any())->willReturn($statement);
-        $statement->execute()->willReturn(true);
+        $this->connection->fetchAll(Argument::any())->willReturn([]);
 
         $collection = new VillageCollection();
-        $this->factory->build($statement->reveal())->willReturn($collection);
+        $this->factory->build([])->willReturn($collection);
 
         $repository = new VillageRepository(
             $this->connection->reveal(),
@@ -54,12 +51,8 @@ class VillageRepositoryTest extends TestCase
      */
     public function findAll_failToExecute_throwsException()
     {
-        /** @var Statement|ObjectProphecy $statement */
-        $statement = $this->prophesize(Statement::class);
-        $this->connection->prepare(Argument::any())->willReturn($statement);
-        $statement->execute()->willThrow(new DBALException());
-
-        $this->factory->build($statement->reveal())->shouldNotBeCalled();
+        $this->connection->fetchAll(Argument::any())->willThrow(new DBALException());
+        $this->factory->build(Argument::any())->shouldNotBeCalled();
 
         $repository = new VillageRepository(
             $this->connection->reveal(),
