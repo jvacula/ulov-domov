@@ -20,8 +20,8 @@ mysql -u root -p${PASSWORD} -e "\
 		IDENTIFIED BY '${PASSWORD}' WITH GRANT OPTION; \
 		FLUSH PRIVILEGES;"
 
-mysql -u${DBNAME} -p${PASSWORD} ${DBNAME} < ././doc/db/ulov_domov_scheme.sql
-mysql -u${DBNAME} -p${PASSWORD} ${DBNAME} < ././doc/db/ulov_domov_data.sql
+mysql -u${DBNAME} -p${PASSWORD} ${DBNAME} < ./ulovdomov/doc/db/ulov_domov_scheme.sql
+mysql -u${DBNAME} -p${PASSWORD} ${DBNAME} < ./ulovdomov/doc/db/ulov_domov_data.sql
 
 sudo apt-get -y install git
 
