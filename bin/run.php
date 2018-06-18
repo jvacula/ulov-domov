@@ -9,6 +9,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 try {
     $databaseConfiguration = Yaml::parse(file_get_contents(__DIR__ . '/../app/config/database.yml'));
+    //@TODO Initialization of classes and configuration handle by DIC 
     $application = new Application(
         DriverManager::getConnection(
             $databaseConfiguration['connection'],
