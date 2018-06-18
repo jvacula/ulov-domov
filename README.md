@@ -1,5 +1,17 @@
 ## UlovDomov - test ukol
 
+## Solution
+- Vagrant contains simple MySQL and PHP provisioning
+- In doc/db/ is simple DB scheme and SQL scripts for creation and inserting of basic demo data
+- Main domain objects are User and Village
+- Infrastructure layer contains implementation for Mysql
+- bin/run.php contains simple execution of developed code
+- DBAL used and database adapter
+- What could be improved:
+    - separation of UserAdminRightsRepository to more classes to lower its complexity
+    - better input structure for User and rights instead of array
+    - implement collection of rights loaded from DB not static constants
+
 ## Pokyny
 - Výsledný kód umístit na public github repositář a poslat Johnymu odkaz v emailu.
 - Je-li cokoliv v zadání nejasné, udělat vlastní rozhodnutí. Lze poslat i dotaz emailem, ale nemohu garantovat okamžitou reakci.
