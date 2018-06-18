@@ -22,6 +22,7 @@ USE `ulov_domov` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `ulov_domov`.`user` (
   `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC));
 
@@ -34,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `ulov_domov`.`user_admin` (
   `user_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  UNIQUE INDEX `user_id_UNIQUE` (`id` ASC),
   INDEX `fk_user_admin_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_user_admin_user`
     FOREIGN KEY (`user_id`)
@@ -53,10 +55,6 @@ CREATE TABLE IF NOT EXISTS `ulov_domov`.`village` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC))
 ENGINE = InnoDB;
 
-INSERT INTO `village`(`name`) VALUES ('Brno');
-INSERT INTO `village`(`name`) VALUES ('Praha');
-
-
 -- -----------------------------------------------------
 -- Table `ulov_domov`.`right`
 -- -----------------------------------------------------
@@ -67,9 +65,6 @@ CREATE TABLE IF NOT EXISTS `ulov_domov`.`right` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC))
 ENGINE = InnoDB;
-
-INSERT INTO `right`(`id`, `name`) VALUES (1, 'addressBook');
-INSERT INTO `right`(`id`, `name`) VALUES (2, 'search');
 
 -- -----------------------------------------------------
 -- Table `ulov_domov`.`user_village_right`
